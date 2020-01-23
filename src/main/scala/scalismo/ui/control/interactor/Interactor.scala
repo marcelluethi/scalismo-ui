@@ -19,7 +19,7 @@ package scalismo.ui.control.interactor
 
 import java.awt.event.{ InputEvent, KeyEvent, MouseEvent, MouseWheelEvent }
 
-import scalismo.ui.control.interactor.Interactor.Verdict.Pass
+import scalismo.ui.control.interactor.Interactor.Verdict.{ Block, Pass }
 import scalismo.ui.control.interactor.Interactor.{ PimpedEvent, Verdict }
 import scalismo.ui.rendering.internal.GLJPanelWithViewport
 import scalismo.ui.view.{ ScalismoFrame, ViewportPanel }
@@ -115,10 +115,6 @@ trait Interactor {
 
   def mouseReleased(e: MouseEvent): Verdict = Pass
 
-  /* The rendering implementation (VTK) does not
-   * handle scroll events, but we still want a
-   * return value in the case of delegations
-   */
-  def mouseWheelMoved(e: MouseWheelEvent): Verdict = Pass
+  def mouseWheelMoved(e: MouseWheelEvent): Verdict = Block
 
 }

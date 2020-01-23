@@ -8,10 +8,9 @@ import com.typesafe.sbt.SbtGit.{git, useJGit}
 object BuildSettings {
   val buildOrganization = "ch.unibas.cs.gravis"
 
+  val buildScalaVersion = "2.12.8"
 
-  val buildScalaVersion = "2.12.6"
-
-  val buildSettings = Defaults.defaultSettings ++ Seq(
+  val buildSettings = Defaults.coreDefaultSettings ++ Seq(
     scalacOptions ++= (CrossVersion.partialVersion(scalaVersion.value) match {
       case Some((2,  11)) =>  Seq("-encoding", "UTF-8", "-Xlint", "-deprecation", "-unchecked", "-feature", "-target:jvm-1.6")
       case _ => Seq("-encoding", "UTF-8", "-Xlint", "-deprecation", "-unchecked", "-feature", "-target:jvm-1.8")
@@ -22,9 +21,9 @@ object BuildSettings {
     }),
     organization := buildOrganization,
     scalaVersion := buildScalaVersion,
-    crossScalaVersions := Seq("2.11.12", "2.12.6")
+    crossScalaVersions := Seq("2.11.12", "2.12.8")
   ) ++ buildInfoSettings ++ Seq(
-    sourceGenerators in Compile <+= buildInfo,
+    sourceGenerators in Compile += buildInfo,
     buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion, BuildInfoKey.action("buildTime") {
       new java.text.SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z (z)", java.util.Locale.US).format(new java.util.Date)
     }, BuildInfoKey.action("buildTimestamp") {
@@ -48,7 +47,7 @@ object Creds {
 object Dependencies {
 
   val scalismo = "ch.unibas.cs.gravis" %% "scalismo" % "0.17.2"
-  val scalismoNative = "ch.unibas.cs.gravis" % "scalismo-native-all" % "4.0.0"
+  val scalismoNative = "ch.unibas.cs.gravis" % "scalismo-native-all" % "5.0.0"
   val scalatest = "org.scalatest" %% "scalatest" % "3.0.1" % "test"
   val swingPlus = "de.sciss" %% "swingplus" % "0.2.2"
   val jIconFont = "com.github.jiconfont" % "jiconfont-swing" % "1.0.1"
