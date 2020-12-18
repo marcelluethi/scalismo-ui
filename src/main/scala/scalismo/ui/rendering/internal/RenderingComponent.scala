@@ -19,8 +19,8 @@ package scalismo.ui.rendering.internal
 
 import java.util.concurrent.locks.ReentrantLock
 
-import javax.media.opengl.awt.GLJPanel
-import javax.media.opengl.{GLAutoDrawable, GLCapabilities, GLEventListener, GLProfile}
+import com.jogamp.opengl.{ GLAutoDrawable, GLCapabilities, GLEventListener, GLProfile }
+import com.jogamp.opengl.awt.GLJPanel
 import scalismo.ui.view.ViewportPanel
 import vtk._
 
@@ -76,7 +76,7 @@ class RenderingComponent(viewport: ViewportPanel) extends vtk.rendering.vtkCompo
   glPanel.addMouseListener(eventForwarder)
   glPanel.addMouseMotionListener(eventForwarder)
   glPanel.addKeyListener(eventForwarder)
-  glPanel.addMouseWheelListener(interceptor)
+  glPanel.addMouseWheelListener(eventForwarder)
 
   glPanel.addGLEventListener(new GLEventListener {
 

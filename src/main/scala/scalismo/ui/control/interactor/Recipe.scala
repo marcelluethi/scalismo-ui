@@ -129,7 +129,7 @@ object Recipe {
           button.action.apply()
         case _ =>
       }
-      Pass
+      Block
     }
 
   }

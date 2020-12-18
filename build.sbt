@@ -10,10 +10,10 @@ lazy val root = (project in file("."))
     scalaVersion := "2.13.3",
     crossScalaVersions := Seq("2.12.11", "2.13.3"),
     resolvers ++= Seq(
-      Resolver.jcenterRepo,
       Resolver.sonatypeRepo("releases"),
       Resolver.sonatypeRepo("snapshots"),
       Resolver.bintrayRepo("unibas-gravis", "maven"),
+      Resolver.jcenterRepo,
       "twitter" at "http://maven.twttr.com/"
     ),
     scalacOptions ++= (CrossVersion.partialVersion(scalaVersion.value) match {
@@ -24,7 +24,8 @@ lazy val root = (project in file("."))
     }),
     libraryDependencies ++= Seq(
       "ch.unibas.cs.gravis" %% "scalismo" % "0.90-RC2",
-      "ch.unibas.cs.gravis" % "scalismo-native-all" % "4.0.0",
+      "ch.unibas.cs.gravis" % "scalismo-native-stub" % "5.0.0",
+      "ch.unibas.cs.gravis" % "scalismo-native-windows64" % "5.0.0",
       "org.scalatest" %% "scalatest" % "3.0.8" % "test",
       "de.sciss" %% "swingplus" % "0.4.2",
       "com.github.jiconfont" % "jiconfont-swing" % "1.0.1",
